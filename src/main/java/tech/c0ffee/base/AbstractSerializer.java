@@ -6,9 +6,8 @@ import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Contains data init methods we need to prepare for test, and methods that will be overridden by concrete serializers
@@ -21,6 +20,7 @@ public abstract class AbstractSerializer {
     protected Rectangle testObject;
 
     public static final int NUMBER_OF_ITERATIONS = 10;
+    public static final int NUMBER_OF_ELEMENTS = 40;
 
     /**
      * Prepares data for benchmarking test.
@@ -29,13 +29,15 @@ public abstract class AbstractSerializer {
     @Setup
     public void init() {
 
-        points = Stream.generate(Point.RandomPointBuilder::build)
-                .limit(40)
-                .collect(Collectors.toList());
+        points = new ArrayList<>(NUMBER_OF_ELEMENTS);
+        for(int i = 0; i < NUMBER_OF_ELEMENTS; i++){
+            points.add(Point.RandomPointBuilder.build());
+        }
 
-        rectangles = Stream.generate(Rectangle.RandomRectangleBuilder::build)
-                .limit(40)
-                .collect(Collectors.toList());
+        rectangles = new ArrayList<>(NUMBER_OF_ELEMENTS);
+        for (int i = 0; i < NUMBER_OF_ELEMENTS; i++){
+            rectangles.add(Rectangle.RandomRectangleBuilder.build());
+        }
 
         testObject = Rectangle.RandomRectangleBuilder.build();
     }
