@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Shenker93/jmh-json-comparison-benchmark.svg?branch=master)](https://travis-ci.org/Shenker93/jmh-json-comparison-benchmark)
+![Build Status](https://github.com/Shenker93/jmh-json-comparison-benchmark/actions/workflows/benchmark_run.yml/badge.svg)
 
 **INSTALLATION**
 
